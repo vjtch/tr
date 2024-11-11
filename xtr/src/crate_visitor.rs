@@ -145,13 +145,13 @@ where
             let adjacent = nested_mod_dir.join(&format!("{}/{}.rs", without_suffix, mod_name));
             if adjacent.is_file() {
                 return self
-                    .parse_mod(adjacent)
+                    .parse_mod(adjacent, true)
                     .unwrap_or_else(|err| self.mod_error = Some(err));
             }
             let adjacent_mod = nested_mod_dir.join(without_suffix).join(&mod_name).join("mod.rs");
             if adjacent_mod.is_file() {
                 return self
-                    .parse_mod(adjacent_mod)
+                    .parse_mod(adjacent_mod, true)
                     .unwrap_or_else(|err| self.mod_error = Some(err));
             }
         }
